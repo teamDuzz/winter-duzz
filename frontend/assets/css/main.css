@@ -84,7 +84,7 @@ main {
 }
 
 /* Actions Section */
-.actions {
+.buttons {
   margin-top: 20px;
 }
 
@@ -101,7 +101,7 @@ main {
 }
 
 .btn:hover {
-  background-color: #28517A; /* Darker shade on hover */
+  background-color: #132d47; /* Darker shade on hover */
 }
 
 /* Footer */
