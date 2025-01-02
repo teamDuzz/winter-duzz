@@ -37,5 +37,4 @@ public class Member extends BaseTimeEntity implements UserDetails {
         return id;
     }
 
-
 }
