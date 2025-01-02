@@ -6,12 +6,10 @@ body, h1, h6, p, form, label, input, button, footer, main, section, header {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Noto Sans KR', Arial, sans-serif; /* Font family 통일 */
   background-color: #EDF5FC; /* Background color */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   min-height: 100vh;
 }
 
@@ -24,11 +22,14 @@ header {
 }
 
 main {
-  flex: 1; /* Allows main to grow and center content vertically */
+  flex: 1; /* Allows main to fill available space */
   display: flex;
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
+  flex-direction: column; /* Ensures vertical layout */
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
   width: 100%;
+  padding: 20px; /* Adds padding to main content */
+  box-sizing: border-box; /* Includes padding in width/height calculations */
 }
 
 .login-section .login-container {
@@ -104,12 +105,58 @@ footer {
   color: #ffffff;
   text-align: center;
   padding: 15px 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
+  margin-top: auto; /* Ensures footer is pushed to the bottom */
 }
 
-footer p {
-  font-size: 14px;
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  body {
+    padding: 0 10px; /* 작은 화면에서 양쪽 여백 추가 */
+  }
+
+  .login-section .login-container {
+    padding: 1.5rem;
+    max-width: 90%; /* 화면 크기에 맞게 너비 제한 */
+  }
+
+  .login-section h1 {
+    font-size: 1.5rem; /* 제목 크기 축소 */
+  }
+
+  .login-section label {
+    font-size: 0.9rem; /* 라벨 텍스트 크기 조정 */
+  }
+
+  .login-section input {
+    padding: 0.4rem; /* 입력 필드 높이 조정 */
+  }
+
+  .login-section button {
+    padding: 0.6rem;
+    font-size: 0.9rem; /* 버튼 텍스트 크기 축소 */
+  }
+
+  footer p {
+    font-size: 12px; /* 작은 화면에서 텍스트 크기 축소 */
+  }
+}
+
+@media (max-width: 480px) {
+  .login-section h1 {
+    font-size: 1.2rem; /* 제목 크기 더 축소 */
+  }
+
+  .login-section button {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .password-explain h6 {
+    font-size: 0.9rem; /* 설명 텍스트 크기 조정 */
+  }
+
+  .password-explain p {
+    font-size: 0.8rem;
+  }
 }

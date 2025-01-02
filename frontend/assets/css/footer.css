@@ -7,28 +7,29 @@ footer {
 }
 
 #footer-container {
-  display: flex; /* Flexbox 활성화 */
-  justify-content: space-between; /* 좌우 정렬 */
-  align-items: center; /* 세로 중앙 정렬 */
-  flex-wrap: wrap; /* 화면 크기가 작아질 경우 줄바꿈 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 20px; /* 요소 간 간격 */
+  gap: 20px;
 }
 
+/* 왼쪽 영역 */
 #footer-left {
-  flex: 1; /* 왼쪽 영역이 유동적으로 확장 */
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 15px;
-  min-width: 200px; /* 최소 너비 설정 */
+  min-width: 200px;
 }
 
 .footer-logo {
-  width: 60px; /* 로고 크기 */
+  width: 60px;
   height: 60px;
-  filter: invert(1);
+  filter: brightness(0) invert(1);
 }
 
 .footer-title {
@@ -45,68 +46,99 @@ footer {
   font-size: 0.9rem;
 }
 
+/* 오른쪽 영역 */
 #footer-right {
-  flex: 2; /* 오른쪽 영역이 유동적으로 확장 */
+  flex: 2;
   display: flex;
-  flex-direction: column; /* 세로 정렬 */
-  align-items: flex-start; /* 왼쪽 정렬 */
+  flex-direction: column;
+  align-items: flex-start;
   text-align: left;
   gap: 15px;
-  min-width: 250px; /* 최소 너비 설정 */
+  min-width: 250px;
 }
 
 .information {
-  display: flex; /* 가로 정렬 */
-  flex-wrap: wrap; /* 화면이 작아지면 줄바꿈 */
+  display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   font-size: 14px;
-  word-break: break-word; /* 긴 텍스트 줄바꿈 */
+  word-break: break-word;
 }
 
+.location_link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.location_link:hover {
+  text-decoration: underline; /* 하이라이트 강조 */
+}
+
+/* 아이콘 섹션 */
 .icons {
-  display: flex; /* 아이콘 가로 정렬 */
-  gap: 10px;
-  flex-wrap: wrap; /* 화면이 작아지면 줄바꿈 */
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
   justify-content: flex-start;
 }
 
+.icons a {
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.icons a:hover {
+  color: #54afff; /* 호버 시 강조 */
+}
+
 .icons a img {
-  width: 24px; /* 아이콘 크기 */
+  width: 24px;
   height: 24px;
 }
 
-/* 저작권 관련 스타일 */
+/* 저작권 영역 */
 #footer-copyright {
-  text-align: center; /* 중앙 정렬 */
-  font-size: 12px; /* 작은 글씨 크기 */
-  color: #CCCCCC; /* 연한 텍스트 색상 */
-  margin-top: 20px; /* 위 요소와 간격 */
-  padding-top: 10px; /* 위쪽 여백 */
-  border-top: 1px solid #666666; /* 위쪽 경계선 */
+  text-align: center;
+  font-size: 12px;
+  color: #CCCCCC;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #666666; /* 상단 경계선 */
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   #footer-container {
-    flex-direction: column; /* 세로 정렬 */
-    align-items: center; /* 중앙 정렬 */
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 
   #footer-left,
   #footer-right {
-    align-items: center; /* 자식 요소 중앙 정렬 */
+    align-items: center;
     text-align: center;
   }
 
   .icons {
-    justify-content: center; /* 아이콘 중앙 정렬 */
+    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
   .information {
-    flex-direction: column; /* 정보 세로 정렬 */
+    flex-direction: column;
     gap: 10px;
+  }
+
+  .icons a img {
+    width: 20px; /* 작은 화면에서 아이콘 크기 축소 */
+    height: 20px;
+  }
+
+  .icons a {
+    font-size: 14px; /* 아이콘 텍스트 크기 축소 */
   }
 }
