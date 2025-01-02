@@ -103,16 +103,3 @@ main {
 .btn:hover {
   background-color: #132d47; /* Darker shade on hover */
 }
-
-/* Footer */
-footer {
-  background-color: #454749; /* Footer background color */
-  color: #FFFFFF;
-  text-align: center;
-  padding: 15px 0;
-  margin-top: auto;
-}
-
-footer p {
-  font-size: 14px;
-}

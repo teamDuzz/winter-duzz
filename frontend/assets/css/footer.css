@@ -1,61 +1,112 @@
 /* Footer 전체 스타일 */
 footer {
-  background-color: #454749; /* 배경 색상 */
-  color: #FFFFFF; /* 텍스트 색상 */
-  padding: 20px 40px; /* 여백 */
+  background-color: #454749;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 20px 0;
 }
 
-.footer-container {
-  display: flex;
-  justify-content: space-between; /* 왼쪽, 가운데, 오른쪽 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
-  max-width: 1200px; /* 최대 너비 */
-  margin: 0 auto; /* 중앙으로 정렬 */
+#footer-container {
+  display: flex; /* Flexbox 활성화 */
+  justify-content: space-between; /* 좌우 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  flex-wrap: wrap; /* 화면 크기가 작아질 경우 줄바꿈 */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px; /* 요소 간 간격 */
 }
 
-/* 왼쪽: 로고 및 학교명 */
-.footer-left {
+#footer-left {
+  flex: 1; /* 왼쪽 영역이 유동적으로 확장 */
   display: flex;
   align-items: center;
+  gap: 15px;
+  min-width: 200px; /* 최소 너비 설정 */
 }
 
 .footer-logo {
   width: 60px; /* 로고 크기 */
   height: 60px;
-  margin-right: 15px; /* 로고와 텍스트 간격 */
-  filter: invert(1); /* 로고 색상 하얀색으로 변경 */
+  filter: invert(1);
 }
 
-.footer-title h1 {
-  font-size: 1.2rem; /* 학교명 크기 */
-  font-weight: bold;
-  margin: 0;
-}
-
-.footer-title p {
-  font-size: 0.9rem; /* 영문 텍스트 크기 */
-  margin: 5px 0 0;
-}
-
-/* 가운데: 주소 및 연락처 */
-.footer-center {
-  text-align: center;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.footer-center p {
-  margin: 5px 0;
-}
-
-/* 오른쪽: 소셜 미디어 아이콘 */
-.footer-right {
+.footer-title {
   display: flex;
-  gap: 10px; /* 아이콘 간격 */
+  flex-direction: column;
 }
 
-.footer-right a img {
-  width: 30px; /* 아이콘 크기 */
-  height: 30px;
-  filter: invert(1); /* 아이콘 색상을 하얀색으로 변경 */
+.footer-title-main {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.footer-title-sub {
+  font-size: 0.9rem;
+}
+
+#footer-right {
+  flex: 2; /* 오른쪽 영역이 유동적으로 확장 */
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  align-items: flex-start; /* 왼쪽 정렬 */
+  text-align: left;
+  gap: 15px;
+  min-width: 250px; /* 최소 너비 설정 */
+}
+
+.information {
+  display: flex; /* 가로 정렬 */
+  flex-wrap: wrap; /* 화면이 작아지면 줄바꿈 */
+  gap: 5px;
+  font-size: 14px;
+  word-break: break-word; /* 긴 텍스트 줄바꿈 */
+}
+
+.icons {
+  display: flex; /* 아이콘 가로 정렬 */
+  gap: 10px;
+  flex-wrap: wrap; /* 화면이 작아지면 줄바꿈 */
+  justify-content: flex-start;
+}
+
+.icons a img {
+  width: 24px; /* 아이콘 크기 */
+  height: 24px;
+}
+
+/* 저작권 관련 스타일 */
+#footer-copyright {
+  text-align: center; /* 중앙 정렬 */
+  font-size: 12px; /* 작은 글씨 크기 */
+  color: #CCCCCC; /* 연한 텍스트 색상 */
+  margin-top: 20px; /* 위 요소와 간격 */
+  padding-top: 10px; /* 위쪽 여백 */
+  border-top: 1px solid #666666; /* 위쪽 경계선 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  #footer-container {
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    text-align: center;
+  }
+
+  #footer-left,
+  #footer-right {
+    align-items: center; /* 자식 요소 중앙 정렬 */
+    text-align: center;
+  }
+
+  .icons {
+    justify-content: center; /* 아이콘 중앙 정렬 */
+  }
+}
+
+@media (max-width: 480px) {
+  .information {
+    flex-direction: column; /* 정보 세로 정렬 */
+    gap: 10px;
+  }
 }
