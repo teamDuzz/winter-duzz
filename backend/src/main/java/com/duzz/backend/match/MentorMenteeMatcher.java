@@ -14,7 +14,7 @@ public class MentorMenteeMatcher {
 
     // 멘토-멘티 매칭
     public static Mentor matchProfiles(List<Mentor> mentors, Mentee mentee) {
-        String url = "http://localhost:5000/api/receive"; // Flask 서버 URL
+        String url = ; // Flask 서버 URL
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper objectMapper = new ObjectMapper();
         // MentorshipData 객체 생성
