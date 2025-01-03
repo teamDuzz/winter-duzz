@@ -1,0 +1,144 @@
+/* Footer 전체 스타일 */
+footer {
+  background-color: #454749;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 20px 0;
+}
+
+#footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+/* 왼쪽 영역 */
+#footer-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 200px;
+}
+
+.footer-logo {
+  width: 60px;
+  height: 60px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-title-main {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.footer-title-sub {
+  font-size: 0.9rem;
+}
+
+/* 오른쪽 영역 */
+#footer-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 15px;
+  min-width: 250px;
+}
+
+.information {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.location_link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.location_link:hover {
+  text-decoration: underline; /* 하이라이트 강조 */
+}
+
+/* 아이콘 섹션 */
+.icons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.icons a {
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.icons a:hover {
+  color: #54afff; /* 호버 시 강조 */
+}
+
+.icons a img {
+  width: 24px;
+  height: 24px;
+}
+
+/* 저작권 영역 */
+#footer-copyright {
+  text-align: center;
+  font-size: 12px;
+  color: #CCCCCC;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #666666; /* 상단 경계선 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  #footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #footer-left,
+  #footer-right {
+    align-items: center;
+    text-align: center;
+  }
+
+  .icons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .information {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .icons a img {
+    width: 20px; /* 작은 화면에서 아이콘 크기 축소 */
+    height: 20px;
+  }
+
+  .icons a {
+    font-size: 14px; /* 아이콘 텍스트 크기 축소 */
+  }
+}

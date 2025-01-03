@@ -1,46 +1,72 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* Reset basic styles */
+body, h1, h6, p, form, label, input, button, footer, main, section, header {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.login-container {
-  background: #fff;
+body {
+  font-family: 'Noto Sans KR', Arial, sans-serif; /* Font family 통일 */
+  background-color: #EDF5FC; /* Background color */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #36639D; /* Header bar color */
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+main {
+  flex: 1; /* Allows main to fill available space */
+  display: flex;
+  flex-direction: column; /* Ensures vertical layout */
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  width: 100%;
+  padding: 20px; /* Adds padding to main content */
+  box-sizing: border-box; /* Includes padding in width/height calculations */
+}
+
+.login-section .login-container {
+  background: gray; /* Gray background */
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
+  text-align: center;
 }
 
-h1 {
+.login-section h1 {
   margin-bottom: 1rem;
+  color: white;
 }
 
-form {
+.login-section form {
   display: flex;
   flex-direction: column;
 }
 
-label {
+.login-section label {
   text-align: left;
   margin-bottom: 0.5rem;
   font-weight: bold;
+  color: white;
 }
 
-input {
+.login-section input {
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-button {
+.login-section button {
   padding: 0.7rem;
   border: none;
   border-radius: 4px;
@@ -50,15 +76,87 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.login-section button:hover {
   background-color: #0056b3;
 }
 
-#error-message {
+.login-section #error-message {
   color: red;
   margin-top: 1rem;
 }
 
-.hidden {
-  display: none;
+.login-section .password-explain {
+  margin-top: 1.5rem;
+  color: white;
+}
+
+.password-explain h6 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.password-explain p {
+  font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+  background-color: #454749; /* Footer color */
+  color: #ffffff;
+  text-align: center;
+  padding: 15px 0;
+  width: 100%;
+  margin-top: auto; /* Ensures footer is pushed to the bottom */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  body {
+    padding: 0 10px; /* 작은 화면에서 양쪽 여백 추가 */
+  }
+
+  .login-section .login-container {
+    padding: 1.5rem;
+    max-width: 90%; /* 화면 크기에 맞게 너비 제한 */
+  }
+
+  .login-section h1 {
+    font-size: 1.5rem; /* 제목 크기 축소 */
+  }
+
+  .login-section label {
+    font-size: 0.9rem; /* 라벨 텍스트 크기 조정 */
+  }
+
+  .login-section input {
+    padding: 0.4rem; /* 입력 필드 높이 조정 */
+  }
+
+  .login-section button {
+    padding: 0.6rem;
+    font-size: 0.9rem; /* 버튼 텍스트 크기 축소 */
+  }
+
+  footer p {
+    font-size: 12px; /* 작은 화면에서 텍스트 크기 축소 */
+  }
+}
+
+@media (max-width: 480px) {
+  .login-section h1 {
+    font-size: 1.2rem; /* 제목 크기 더 축소 */
+  }
+
+  .login-section button {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .password-explain h6 {
+    font-size: 0.9rem; /* 설명 텍스트 크기 조정 */
+  }
+
+  .password-explain p {
+    font-size: 0.8rem;
+  }
 }

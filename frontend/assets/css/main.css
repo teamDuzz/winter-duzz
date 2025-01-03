@@ -15,6 +15,7 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  min-height: 100vh; /* Ensure full-height layout */
 }
 
 /* Header */
@@ -46,15 +47,6 @@ body {
   font-weight: bold;
 }
 
-.navbar_toggle_collapsed {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #FFFFFF;
-  font-size: 24px;
-  display: none; /* Hidden unless needed for responsive design */
-}
-
 /* Main Content */
 main {
   display: flex;
@@ -63,8 +55,13 @@ main {
   align-items: center;
   text-align: center;
   margin: 0 auto;
-  padding: 80px 20px;
+  padding: 80px 20px; /* Adjusted padding to fit fixed header */
   flex-grow: 1;
+}
+
+.intro_section {
+  max-width: 852px;
+  margin: 0 auto;
 }
 
 .intro {
@@ -84,7 +81,7 @@ main {
 }
 
 /* Actions Section */
-.actions {
+.buttons {
   margin-top: 20px;
 }
 
@@ -101,18 +98,5 @@ main {
 }
 
 .btn:hover {
-  background-color: #28517A; /* Darker shade on hover */
-}
-
-/* Footer */
-footer {
-  background-color: #454749; /* Footer background color */
-  color: #FFFFFF;
-  text-align: center;
-  padding: 15px 0;
-  margin-top: auto;
-}
-
-footer p {
-  font-size: 14px;
+  background-color: #132d47; /* Darker shade on hover */
 }
