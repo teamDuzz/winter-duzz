@@ -1,18 +1,19 @@
 package com.duzz.backend.match;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Getter
+@Setter
 public class Match {
-    Mentor mentor;
-    Mentee mentee;
-    double score;
+    private final Mentor mentor;
+    private final List<Mentee> mentees;
 
-    public Match(Mentor mentor, Mentee mentee, double score) {
+    public Match(Mentor mentor, List<Mentee> mentees) {
         this.mentor = mentor;
-        this.mentee = mentee;
-        this.score = score;
-    }
+        this.mentees = mentees;
 
-    @Override
-    public String toString() {
-        return "Mentor: " + mentor.name + ", Mentee: " + mentee.name + ", Score: " + score;
     }
 }
