@@ -7,11 +7,8 @@ import java.util.*;
 public class Mentor extends Profile {
     private String major;
     List<String>subjects;
-    public Mentor() {
-        super("", new int[5][48]);
-    }
-    public Mentor(String name, int[][] schedule, String major, List<String> subjects) {
-        super(name, schedule);
+    public Mentor(String name, String major, List<String> subjects) {
+        super(name);
         this.major = major;
         this.subjects = subjects;
     }

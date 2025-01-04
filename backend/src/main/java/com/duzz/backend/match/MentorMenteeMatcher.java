@@ -1,6 +1,5 @@
 package com.duzz.backend.match;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
@@ -13,12 +12,12 @@ import java.util.List;
 public class MentorMenteeMatcher {
 
     // 멘토-멘티 매칭
-    public static Mentor matchProfiles(List<Mentor> mentors, Mentee mentee) {
+    public static Mentor matchProfiles(List<Mentor> mentors, List<Mentee> mentees) {
         String url = "http://211.109.126.86:5000/api/receive"; // Flask 서버 URL
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper objectMapper = new ObjectMapper();
         // MentorshipData 객체 생성
-        MentorshipData mentorshipData = new MentorshipData(mentors, mentee);
+        MentorshipData mentorshipData = new MentorshipData(mentors, mentees);
 
         // 요청 헤더 설정 (UTF-8 인코딩)
         HttpHeaders headers = new HttpHeaders();
@@ -34,7 +33,9 @@ public class MentorMenteeMatcher {
 
             // Flask 서버로 POST 요청 보내기
             ResponseEntity<String> response = restTemplate.postForEntity(url, entity, String.class);
-            // 서버 응답 확인
+
+
+            // 서버 응답 확인 (수정 필요)
             if (response.getStatusCode() == HttpStatus.OK) {
                 System.out.println("Response from Flask server: " + response.getBody());
 
@@ -59,14 +60,7 @@ public class MentorMenteeMatcher {
     }
 
     // 내부 클래스: MentorshipData
-    @Getter
-    static class MentorshipData {
-        private final List<Mentor> mentors;
-        private final Mentee mentee;
-
-        public MentorshipData(List<Mentor> mentors, Mentee mentee) {
-            this.mentors = mentors;
-            this.mentee = mentee;
-        }
+        @Getter
+    record MentorshipData(List<Mentor> mentors, List<Mentee> mentees) {
     }
 }
