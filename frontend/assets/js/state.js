@@ -1,49 +1,32 @@
-// assets/js/state.js
+const API_BASE_URL = 'http://59.29.157.89:8080'; // API 기본 URL
 
 async function getState() {
-  try {
-      // state.json 파일의 데이터를 가져옴
-      const response = await fetch('/assets/templates/state.json');
-      if (!response.ok) {
-          throw new Error('Failed to fetch state.json');
-      }
-      const data = await response.json();
+    const API_URL = `${API_BASE_URL}/state`; // 기본 URL에 /state 추가
 
-      // 상태 문자열을 숫자로 변환
-      let stateNumber;
-      switch (data.state) {
-          case "input":
-              stateNumber = 0;
-              break;
-          case "matching":
-              stateNumber = 1;
-              break;
-          case "completed":
-              stateNumber = 2;
-              break;
-          default:
-              throw new Error('Invalid state value in state.json');
-      }
+    try {
+        console.log(`Fetching state from ${API_URL}`);
+        // 서버에서 state 값을 가져옴
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch state from ${API_URL}`);
+        }
 
-      return stateNumber; // 0, 1, 또는 2
-  } catch (error) {
-      console.error("Error fetching state:", error);
-      return null; // 에러가 발생하면 null 반환
-  }
+        // 서버가 숫자를 반환하는 경우
+        const data = await response.text();
+        const state = parseInt(data, 10); // 숫자로 변환
+        if (isNaN(state)) {
+            throw new Error('Invalid state value received from server');
+        }
+
+        console.log(`State fetched from server: ${state}`);
+        return state; // 0, 1, 2 값을 반환
+    } catch (error) {
+        console.error("Error fetching state:", error);
+        return null; // 에러가 발생하면 null 반환
+    }
 }
 
-// 예시: 상태에 따라 대시보드의 동작 변경
+// 예시: 상태 출력
 getState().then(state => {
-  if (state === 0) {
-      console.log("현재 상태: 정보 입력 기간");
-      // 정보 입력 UI 표시
-  } else if (state === 1) {
-      console.log("현재 상태: 매칭 중");
-      // 매칭 중 메시지 표시
-  } else if (state === 2) {
-      console.log("현재 상태: 매칭 완료");
-      // 매칭 결과 표시
-  } else {
-      console.log("상태를 불러오지 못했습니다.");
-  }
+    console.log("현재 상태 값:", state);
 });
