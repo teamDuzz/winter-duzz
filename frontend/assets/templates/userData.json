@@ -1,0 +1,18 @@
+[
+  {
+    "studentId": "202302582",
+    "password": "010203",
+    "role": "mentor"
+  },
+  
+  {
+    "studentId": "202302583",
+    "password": "010203",
+    "role": "mentee"
+  },
+  {
+    "studentId": "00",
+    "password": "11",
+    "role": "mentee"
+  }
+]

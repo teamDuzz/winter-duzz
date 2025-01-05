@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멘토 대시보드</title>
+
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">멘토 시스템</div>
+            <ul class="nav-links">
+                <li><a href="#dashboard">대시보드</a></li>
+                <li><a href="#schedule">시간표</a></li>
+                <li><a href="#resources">자료실</a></li>
+                <li><a href="#info">정보 페이지</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <section id="dashboard">
+            <h1>대시보드</h1>
+            <div class="mentee-list">
+                <!-- 멘티 정보가 있을 때 -->
+                <div class="mentee-tile">
+                    <h2>멘티 이름</h2>
+                    <p>학과: 컴퓨터공학과</p>
+                    <p>학년: 1학년</p>
+                    <p>이메일: mentee@example.com</p>
+                </div>
+                <!-- 멘티 정보가 없을 때 -->
+                <div class="mentee-placeholder">
+                    <p>멘티 정보가 없습니다</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/assets/js/footer.js"></script>
+
+    
+</body>
+</html>

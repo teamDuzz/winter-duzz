@@ -1,0 +1,102 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #EDF5FC;
+  color: #454749;
+  padding: 20px;
+}
+
+/* Admin Dashboard */
+#admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* 카드 간 간격 */
+  max-width: 800px;
+  margin: 40px auto; /* 상단 여백 */
+}
+
+/* 헤더와 첫 번째 카드 간 여백 */
+#admin-dashboard > .admin-card:first-child {
+  margin-top: 40px;
+}
+
+/* Admin Card Style */
+.admin-card {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+.admin-card h2 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #36639D;
+}
+
+/* Form Elements */
+.admin-card form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.admin-card form input,
+.admin-card form select,
+.admin-card form button,
+#start-matching-button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Button Styles */
+#admin-dashboard .admin-card button,
+#admin-dashboard #start-matching-button {
+  background-color: #36639D;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#admin-dashboard .admin-card button:hover,
+#admin-dashboard #start-matching-button:hover {
+  background-color: #244a73;
+}
+
+/* 마지막 카드 하단 여백 */
+.admin-card:last-child {
+  padding-bottom: 40px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  #admin-dashboard {
+    margin: 20px auto; /* 모바일에서 상단 여백 축소 */
+  }
+
+  .admin-card {
+    padding: 15px;
+  }
+
+  .admin-card h2 {
+    font-size: 16px;
+  }
+
+  .admin-card form input,
+  .admin-card form select,
+  .admin-card form button,
+  #start-matching-button {
+    font-size: 12px;
+  }
+}

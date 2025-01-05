@@ -1,0 +1,142 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Arial', sans-serif;
+  background-color: #EDF5FC; /* 페이지 배경 색상 */
+  color: #454749; /* 기본 텍스트 색상 */
+}
+
+/* 고정 헤더 */
+#main-header {
+  background-color: #295388; /* 헤더 배경색 */
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10; /* 콘텐츠 위에 고정 */
+  height: 60px; /* 헤더 높이 */
+}
+
+/* 로고 및 제목 컨테이너 */
+#header-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between; /* 로고와 로그아웃 버튼 간격 */
+}
+
+#header-logo {
+  display: flex;
+  align-items: center;
+}
+
+#header-img {
+  height: 40px; /* 로고 이미지 크기 */
+  margin-right: 10px;
+  color: #FFFFFF;/* 로고와 제목 사이 간격 */
+}
+
+#header-title {
+  color: #FFFFFF; /* 헤더 텍스트 색상 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* 로그아웃 버튼 */
+#logout-button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#logout-button:hover {
+  background-color: #d9534f;
+}
+
+/* 네비게이션 바 */
+#main-nav {
+  background-color: #36639D; /* 네비게이션 배경색 */
+  position: sticky; /* 헤더 아래에 고정 */
+  top: 60px; /* 헤더 높이만큼 아래에 위치 */
+  z-index: 9; /* 헤더보다 낮은 z-index */
+}
+
+#nav-list {
+  display: flex;
+  justify-content: space-around; /* 가로로 균등 간격 */
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+#nav-list li {
+  flex: 1; /* 각 항목이 동일한 너비로 배치 */
+  text-align: center;
+}
+
+#nav-list li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+#nav-list li a:hover {
+  color: #ffeb3b; /* 텍스트 호버 색상 */
+}
+
+/* 메인 콘텐츠 간격 */
+.dashboard {
+  margin-top: 120px; /* 헤더(60px) + 네비게이션(60px) 높이 */
+  padding: 20px;
+}
+
+/* 반응형 디자인 (모바일용) */
+@media (max-width: 768px) {
+  #header-container {
+    justify-content: center; /* 모바일 화면에서는 로고 중앙 정렬 */
+  }
+
+  #header-logo {
+    flex-direction: column; /* 모바일에서는 로고와 제목 세로 정렬 */
+    align-items: center; /* 중앙 정렬 */
+  }
+
+  #header-img {
+    margin-right: 0; /* 세로 정렬에서는 간격 제거 */
+    margin-bottom: 5px; /* 제목과 로고 간격 추가 */
+  }
+
+  #header-title {
+    font-size: 18px; /* 제목 크기 감소 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+  }
+
+  #nav-list {
+    flex-direction: column; /* 모바일에서 세로 정렬 */
+  }
+
+  #nav-list li {
+    margin: 5px 0;
+  }
+
+  .dashboard {
+    margin-top: 140px; /* 모바일에서 헤더와 네비게이션 간격 */
+  }
+}
