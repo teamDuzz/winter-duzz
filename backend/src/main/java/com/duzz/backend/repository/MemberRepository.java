@@ -12,4 +12,7 @@ public interface MemberRepository extends JpaRepository<Member, String> {
     Optional<Member> findById(String id);
 
     Page<Member> findAllByMajor_Name(String majorName, Pageable pageable);
+
+    List<Member> findAll(); // 모든 멤버 반환
 }
+

@@ -7,13 +7,5 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Match {
-    private final Mentor mentor;
-    private final List<Mentee> mentees;
-
-    public Match(Mentor mentor, List<Mentee> mentees) {
-        this.mentor = mentor;
-        this.mentees = mentees;
-
-    }
+public record Match(Mentor mentor, List<Mentee> mentees) {
 }

@@ -66,6 +66,7 @@ public class SubjectTime {
         return new SubjectTime(timeStr);
     }
 
+
     @Embeddable
     @Data
     @AllArgsConstructor

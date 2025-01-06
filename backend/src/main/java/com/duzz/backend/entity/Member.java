@@ -6,10 +6,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @EqualsAndHashCode(callSuper = false)
 @Entity
@@ -38,6 +35,7 @@ public class Member extends BaseTimeEntity implements UserDetails {
     @ManyToOne
     private Major major;
 
+    @Getter
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
@@ -51,4 +49,5 @@ public class Member extends BaseTimeEntity implements UserDetails {
     public String getUsername() {
         return id;
     }
+
 }

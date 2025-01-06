@@ -18,6 +18,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -58,6 +61,11 @@ public class MemberService {
         }
         return null;
     }
+    //모든 멤버 반환
+    public List<Member> getAllMembers() {
+        return memberRepository.findAll();
+    }
+
 
     public void updateMember(String id, MemberUpdateForm form) {
         var member = memberRepository.findById(id).orElse(null);
@@ -94,7 +102,6 @@ public class MemberService {
 
         memberRepository.save(member);
     }
-
     public PagedModel<MemberDto> getMembersByMajor(String majorName, int page) {
         final int pageSize = 100;
 
