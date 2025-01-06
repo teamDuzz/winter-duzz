@@ -53,17 +53,17 @@ html, body {
 
 /* 로그아웃 버튼 */
 #logout-button {
-  background-color: #ff6b6b;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 15px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s ease; /* 색상 변화 애니메이션 */
 }
 
 #logout-button:hover {
-  background-color: #d9534f;
+  color : #888888; /* 호버 시 회색 */
 }
 
 /* 반응형 디자인 (모바일용) */
