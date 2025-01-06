@@ -39,14 +39,6 @@ body {
   color: #454749; /* 기본 텍스트 색상 */
 }
 
-/* Footer */
-.footer {
-  height: 50px; /* 고정 높이 */
-  background-color: #454749; /* 푸터 색상 */
-  color: white;
-  text-align: center;
-  line-height: 50px; /* 수직 중앙 정렬 */
-}
 
 /* 공통 상태 메시지 스타일 */
 .state-message {
