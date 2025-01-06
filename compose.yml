@@ -4,13 +4,14 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8201:8201"
+      - "${PORT}:${PORT}"
     networks:
-      - dmoj_nginx_network
+      # - dmoj_nginx_network
+      - default
     environment:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_URL=anacnu.kr
-      - PORT=8201
+      - PORT=${PORT}
       - FLASK_SERVER_URL=${FLASK_SERVER_URL}
   
 networks:
