@@ -36,7 +36,7 @@ public class MentorMenteeMatcher {
         try {
             // MentorshipData 객체를 JSON으로 변환
             String json = objectMapper.writeValueAsString(mentorshipData);
-            System.out.println("Serialized JSON: " + json);
+//            System.out.println("Serialized JSON: " + json);
 
             // HTTP 요청 생성
             HttpEntity<String> entity = new HttpEntity<>(json, headers);
@@ -45,14 +45,14 @@ public class MentorMenteeMatcher {
             ResponseEntity<String> response = restTemplate.postForEntity(url, entity, String.class);
 
             if (response.getStatusCode() == HttpStatus.OK) {
-                System.out.println("Response from Flask server: " + response.getBody());
+//                System.out.println("Response from Flask server: " + response.getBody());
 
                 // JSON 응답 파싱
                 JsonNode responseJson = objectMapper.readTree(response.getBody());
 
                 if ("success".equals(responseJson.get("status").asText())) {
                     // 매칭 결과 파싱
-                    System.out.println("1");
+//                    System.out.println("1");
                     List<Match> matchResults = new ArrayList<>();
                     JsonNode resultNode = responseJson.get("result");
                     for (JsonNode matchNode : resultNode) {
