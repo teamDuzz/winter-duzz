@@ -2,13 +2,19 @@ package com.duzz.backend.match;
 
 import com.duzz.backend.entity.Member;
 import com.duzz.backend.entity.MemberSubject;
+import com.duzz.backend.form.MemberUpdateForm;
 import com.duzz.backend.service.MemberService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Matching {
-    static MemberService memberService;
+    private final MemberService memberService;
+
+    // 생성자에서 MemberService 주입
+    public Matching(MemberService memberService) {
+        this.memberService = memberService;
+    }
     public void MentorMenteeMatch(){
         List<Member> members = memberService.getAllMembers();
         List<Mentor> mentors =new ArrayList<>();
@@ -31,10 +37,18 @@ public class Matching {
         }
         List<Match> matches = MentorMenteeMatcher.matchProfiles(mentors, mentees);
         for (Match match : matches) {
+            List<String> menteeNames = new ArrayList<>();
             for(Mentee mentee : match.mentees()){
-                //멘티에게 멘토 매칭 결과 전송
-                //멘토에게 멘티 매칭 결과 전송
+                MemberUpdateForm menteeForm = MemberUpdateForm.builder()
+                        .name("a")// 멘토추가로 변경
+                        .build();
+                memberService.updateMember(mentee.getNumber(),menteeForm);
+                menteeNames.add(mentee.getName());
             }
+            MemberUpdateForm mentorForm = MemberUpdateForm.builder()
+                    .name("a")//멘티 리스트 추가
+                    .build();
+            memberService.updateMember(match.mentor().getNumber(),mentorForm);
         }
     }
 }
