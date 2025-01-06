@@ -32,7 +32,7 @@ public class MemberDto {
                 .isMentor(member.getIsMentor())
                 .matchingOption(member.getMatchingOption())
                 .subjects(member.getSubjects().stream()
-                        .map(memberSubject -> memberSubject.getSubject().getName())
+                        .map(memberSubject -> memberSubject.getSubject().getId())
                         .toList())
                 .mentorId(member.getMentor() == null ? null : member.getMentor().getId())
                 .menteeIds(member.getMentees().stream()
