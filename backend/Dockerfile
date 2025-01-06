@@ -12,6 +12,6 @@ WORKDIR /app
 
 COPY --from=build /app/build/libs/*.jar app.jar
 
-EXPOSE 8201
+EXPOSE ${PORT}
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
