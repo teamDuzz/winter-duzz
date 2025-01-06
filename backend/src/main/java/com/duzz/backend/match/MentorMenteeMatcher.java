@@ -5,18 +5,23 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MentorMenteeMatcher {
+    @Value("${flask.server.url}")
+    private String url;
 
     // 멘토-멘티 매칭
-    public static List<Match> matchProfiles(List<Mentor> mentors, List<Mentee> mentees) {
-        String url = "http://211.109.126.86:5000/api/receive"; // Flask 서버 URL
+    public List<Match> matchProfiles(List<Mentor> mentors, List<Mentee> mentees) {
+//        String url = "http://211.109.126.86:5000/api/receive"; // Flask 서버 URL
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);

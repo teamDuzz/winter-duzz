@@ -89,6 +89,17 @@ public class MemberController {
         }
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "학번을 기반으로 회원 정보를 반환합니다.")
+    public ResponseEntity<?> getMember(@PathVariable("id") String id) {
+        try {
+            return ResponseEntity.ok(memberService.getMember(id));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping("/list/major")
     @Operation(summary = "학과를 기반으로 회원 목록을 반환합니다.")
     public ResponseEntity<?> getMemberListByMajor(@RequestParam String major, @RequestParam(defaultValue = "0") Integer page) {

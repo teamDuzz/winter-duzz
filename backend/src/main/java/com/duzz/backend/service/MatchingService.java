@@ -17,6 +17,7 @@ import java.util.List;
 public class MatchingService {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
+    private final MentorMenteeMatcher mentorMenteeMatcher;
 
     @Transactional
     // 멘토-멘티 매칭 메소드
@@ -48,7 +49,7 @@ public class MatchingService {
         }
 
         // 멘토와 멘티 매칭
-        List<Match> matches = MentorMenteeMatcher.matchProfiles(mentors, mentees);
+        List<Match> matches = mentorMenteeMatcher.matchProfiles(mentors, mentees);
 //        var minseok = mentors.stream().filter(x -> x.getNumber().equals("202302582")).findAny().orElse(null);
 //        if (minseok == null) throw new RuntimeException("유민석을 찾을 수 없습니다.");
 //        List<Match> matches = List.of(
@@ -83,6 +84,14 @@ public class MatchingService {
             throw new RuntimeException("멘티를 찾을 수 없습니다: " + menteeId);
         }
 
+        if (!mentor.getIsMentor()) {
+            throw new RuntimeException("멘토가 아닙니다: " + mentorId);
+        }
+
+        if (mentee.getIsMentor()) {
+            throw new RuntimeException("멘티가 아닙니다: " + menteeId);
+        }
+
         matchInternal(mentor, mentee);
     }
 
@@ -95,6 +104,14 @@ public class MatchingService {
         }
         if (mentee == null) {
             throw new RuntimeException("멘티를 찾을 수 없습니다: " + menteeId);
+        }
+
+        if (!mentor.getIsMentor()) {
+            throw new RuntimeException("멘토가 아닙니다: " + mentorId);
+        }
+
+        if (mentee.getIsMentor()) {
+            throw new RuntimeException("멘티가 아닙니다: " + menteeId);
         }
 
         unmatchInternal(mentor, mentee);

@@ -4,17 +4,16 @@ import com.duzz.backend.entity.Member;
 import com.duzz.backend.entity.MemberSubject;
 import com.duzz.backend.form.MemberUpdateForm;
 import com.duzz.backend.service.MemberService;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class Matching {
     private final MemberService memberService;
+    private final MentorMenteeMatcher mentorMenteeMatcher;
 
-    // 생성자에서 MemberService 주입
-    public Matching(MemberService memberService) {
-        this.memberService = memberService;
-    }
     public void MentorMenteeMatch(){
         List<Member> members = memberService.getAllMembers();
         List<Mentor> mentors =new ArrayList<>();
@@ -35,7 +34,7 @@ public class Matching {
 //                mentees.add(mentee);
             }
         }
-        List<Match> matches = MentorMenteeMatcher.matchProfiles(mentors, mentees);
+        List<Match> matches = mentorMenteeMatcher.matchProfiles(mentors, mentees);
         for (Match match : matches) {
             List<String> menteeNames = new ArrayList<>();
             for(Mentee mentee : match.mentees()){
