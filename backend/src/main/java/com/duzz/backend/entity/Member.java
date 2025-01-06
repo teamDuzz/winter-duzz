@@ -61,9 +61,4 @@ public class Member extends BaseTimeEntity implements UserDetails {
         return id;
     }
 
-    public boolean getMatchingOption() {
-        return matchingOption;
-    }
-
-
 }
