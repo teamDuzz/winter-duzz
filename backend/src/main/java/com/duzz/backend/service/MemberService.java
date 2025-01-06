@@ -8,6 +8,7 @@ import com.duzz.backend.form.SignInForm;
 import com.duzz.backend.form.SignUpForm;
 import com.duzz.backend.repository.MajorRepository;
 import com.duzz.backend.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -48,9 +49,11 @@ public class MemberService {
         return jwtTokenProvider.generateToken(auth);
     }
 
+    @Transactional
     public MemberDto getMember(String id) {
         var member = memberRepository.findById(id).orElse(null);
         if (member != null) {
+            System.out.println(member.getSubjects());
             return MemberDto.from(member);
         }
         return null;

@@ -54,7 +54,7 @@ public class SubjectService {
         var sort = Sort.by("name").ascending();
         var pageable = PageRequest.of(page, 50, sort);
 
-        var subjects = subjectRepository.findByNameContainingIgnoreCaseOrProfessorContainingIgnoreCase(keyword, keyword, pageable);
+        var subjects = subjectRepository.findByKeyword(keyword, pageable);
         var subjectDtos = subjects.map(SubjectDto::from);
         return new PagedModel<>(subjectDtos);
     }
