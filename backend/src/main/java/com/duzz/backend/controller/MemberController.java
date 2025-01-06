@@ -1,6 +1,6 @@
 package com.duzz.backend.controller;
 
-import com.duzz.backend.form.JwtTokenDto;
+import com.duzz.backend.dto.JwtTokenDto;
 import com.duzz.backend.form.MemberUpdateForm;
 import com.duzz.backend.form.SignInForm;
 import com.duzz.backend.form.SignUpForm;

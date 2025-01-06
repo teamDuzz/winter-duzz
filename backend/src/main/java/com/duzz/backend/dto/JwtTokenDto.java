@@ -1,4 +1,4 @@
-package com.duzz.backend.form;
+package com.duzz.backend.dto;
 
 import lombok.Builder;
 import lombok.Data;

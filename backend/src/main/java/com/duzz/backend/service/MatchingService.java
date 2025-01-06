@@ -41,8 +41,9 @@ public class MatchingService {
                 mentors.add(mentor);
             } else {
                 // Mentee 생성하고 리스트에 추가
-                List<String> interests = member.getInterest() == null ? Collections.emptyList() : List.of(member.getInterest().split("\\|"));
-                Mentee mentee = new Mentee(member.getName(), member.getId(), interests, subjects, member.getMatchingOption());
+                var option = member.getMatchingOption() != null && member.getMatchingOption();
+                List<String> interests = member.getInterest() == null ? Collections.emptyList() : List.of(member.getInterest().split(", "));
+                Mentee mentee = new Mentee(member.getName(), member.getId(), interests, subjects, option);
                 mentee.setSchedule(timetable);
                 mentees.add(mentee);
             }
@@ -50,11 +51,6 @@ public class MatchingService {
 
         // 멘토와 멘티 매칭
         List<Match> matches = mentorMenteeMatcher.matchProfiles(mentors, mentees);
-//        var minseok = mentors.stream().filter(x -> x.getNumber().equals("202302582")).findAny().orElse(null);
-//        if (minseok == null) throw new RuntimeException("유민석을 찾을 수 없습니다.");
-//        List<Match> matches = List.of(
-//                new Match(minseok, mentees)
-//        );
 
         // 매칭 결과를 멤버에 반영
         for (Match match : matches) {
