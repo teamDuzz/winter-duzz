@@ -1,5 +1,6 @@
 package com.duzz.backend.controller;
 
+import com.duzz.backend.component.SecurityProvider;
 import com.duzz.backend.service.StateService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class StateController {
     private final StateService stateService;
+    private final SecurityProvider securityProvider;
 
     @GetMapping("/state")
     @Operation(summary = "상태를 반환합니다.")
@@ -25,7 +27,12 @@ public class StateController {
     @PostMapping("/state")
     @Operation(summary = "상태를 변경합니다.")
     public ResponseEntity<?> setState(Integer state) {
-        stateService.setState(state);
-        return ResponseEntity.ok("상태 변경 성공");
+        try {
+            securityProvider.checkAdmin();
+            stateService.setState(state);
+            return ResponseEntity.ok("상태 변경 성공");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

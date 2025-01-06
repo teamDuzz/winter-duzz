@@ -1,5 +1,6 @@
 package com.duzz.backend.controller;
 
+import com.duzz.backend.component.SecurityProvider;
 import com.duzz.backend.service.AttachFileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -9,7 +10,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,11 +19,13 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class AttachFileController {
     private final AttachFileService attachFileService;
+    private final SecurityProvider securityProvider;
 
     @PostMapping("/upload")
-    @Operation(summary = "파일 업로드 Swagger에서 작동하지 않음", requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", schema = @Schema(implementation = MultipartFile.class, type = "file"))))
+    @Operation(summary = "(관리자용) 파일 업로드 Swagger에서 작동하지 않음", requestBody = @RequestBody(content = @Content(mediaType = "multipart/form-data", schema = @Schema(implementation = MultipartFile.class, type = "file"))))
     public ResponseEntity<?> uploadFile(@RequestPart("file") MultipartFile file) {
         try {
+            securityProvider.checkAdmin();
             var uuid = attachFileService.uploadFile(file);
             return ResponseEntity.ok(uuid);
         } catch (Exception e) {
@@ -41,14 +43,15 @@ public class AttachFileController {
                     .headers(headers)
                     .body(attachFileService.downloadFile(fileName));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
     @PostMapping("/delete/{fileName}")
-    @Operation(summary = "파일 삭제")
+    @Operation(summary = "(관리자용) 파일 삭제")
     public ResponseEntity<?> deleteFile(@PathVariable("fileName") String fileName) {
         try {
+            securityProvider.checkAdmin();
             attachFileService.deleteFile(fileName);
             return ResponseEntity.ok().build();
         } catch (Exception e) {

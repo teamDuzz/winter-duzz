@@ -60,6 +60,7 @@ public class MemberService {
         }
         return null;
     }
+
     //모든 멤버 반환
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
@@ -94,6 +95,9 @@ public class MemberService {
             }
             member.setMajor(major);
             major.getMembers().add(member);
+        }
+        if (form.getInterest() != null) {
+            member.setInterest(form.getInterest());
         }
         if (form.getIsMentor() != null) {
             member.setIsMentor(form.getIsMentor());

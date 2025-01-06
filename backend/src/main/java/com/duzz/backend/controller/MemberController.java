@@ -5,7 +5,7 @@ import com.duzz.backend.form.MemberUpdateForm;
 import com.duzz.backend.form.SignInForm;
 import com.duzz.backend.form.SignUpForm;
 import com.duzz.backend.service.MemberService;
-import com.duzz.backend.util.SecurityUtil;
+import com.duzz.backend.component.SecurityProvider;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+    private final SecurityProvider securityProvider;
 
     @PostMapping("/signup")
     @Operation(summary = "회원가입을 시도합니다.", responses = {
@@ -67,7 +68,7 @@ public class MemberController {
     @Operation(summary = "(JWT 토큰 필요) 회원 정보를 수정합니다. 모든 필드는 선택사항으로, 수정하려는 필드만 입력하면 됩니다.")
     public ResponseEntity<?> updateMember(@RequestBody MemberUpdateForm form) {
         try {
-            var id = SecurityUtil.getCurrentUserId();
+            var id = securityProvider.getCurrentUserId();
             memberService.updateMember(id, form);
             return ResponseEntity.ok("회원 정보 수정 성공");
         } catch (Exception e) {
@@ -80,7 +81,7 @@ public class MemberController {
     @Operation(summary = "(JWT 토큰 필요) 전송된 JWT 토큰을 기반으로 내 정보를 반환합니다. Swagger에서는 불가능하고 Postman 등을 사용해야 함.")
     public ResponseEntity<?> getMyInfo() {
         try {
-            var id = SecurityUtil.getCurrentUserId();
+            var id = securityProvider.getCurrentUserId();
             return ResponseEntity.ok(memberService.getMember(id));
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -2,20 +2,23 @@ package com.duzz.backend.service;
 
 import com.duzz.backend.entity.Member;
 import com.duzz.backend.entity.MemberSubject;
-import com.duzz.backend.form.MemberUpdateForm;
 import com.duzz.backend.match.*;
+import com.duzz.backend.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class MatchingService {
-
     private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
+    @Transactional
     // 멘토-멘티 매칭 메소드
     public void mentorMenteeMatch() {
         // 멤버 목록 가져오기
@@ -31,35 +34,95 @@ public class MatchingService {
                 subjects.add(subject.getSubject().getName());
             }
             if (member.getIsMentor()) {
-                Mentor mentor = new Mentor(member.getName(), member.getId(), member.getMajor().toString(), subjects);
+                var major = member.getMajor() == null ? "" : member.getMajor().getName();
+                Mentor mentor = new Mentor(member.getName(), member.getId(), major, subjects);
                 mentor.setSchedule(timetable);
                 mentors.add(mentor);
             } else {
                 // Mentee 생성하고 리스트에 추가
-                //Mentee mentee = new Mentee(member.getName(), member.getId(),interest, subjects,options);
-                //mentee.setSchedule(timetable);
-                //mentees.add(mentee);
+                List<String> interests = member.getInterest() == null ? Collections.emptyList() : List.of(member.getInterest().split("\\|"));
+                Mentee mentee = new Mentee(member.getName(), member.getId(), interests, subjects, false);
+                mentee.setSchedule(timetable);
+                mentees.add(mentee);
             }
         }
 
         // 멘토와 멘티 매칭
         List<Match> matches = MentorMenteeMatcher.matchProfiles(mentors, mentees);
+//        var minseok = mentors.stream().filter(x -> x.getNumber().equals("202302582")).findAny().orElse(null);
+//        if (minseok == null) throw new RuntimeException("유민석을 찾을 수 없습니다.");
+//        List<Match> matches = List.of(
+//                new Match(minseok, mentees)
+//        );
 
         // 매칭 결과를 멤버에 반영
         for (Match match : matches) {
             // 멘티에게 멘토를 추가
-            for (Mentee mentee : match.mentees()) {
-                MemberUpdateForm menteeForm = MemberUpdateForm.builder()
-                        .name("a")  // 멘토 추가 후 멘티 업데이트
-                        .build();
-                memberService.updateMember(mentee.getNumber(), menteeForm);
+            var memberMentor = memberRepository.findById(match.mentor().getNumber()).orElse(null);
+            if (memberMentor == null) {
+                throw new RuntimeException("멘토를 찾을 수 없습니다: " + match.mentor().getNumber());
             }
-
-            // 멘토에게 멘티 리스트 추가
-            MemberUpdateForm mentorForm = MemberUpdateForm.builder()
-                    .name("a")  // 멘티 리스트 추가
-                    .build();
-            memberService.updateMember(match.mentor().getNumber(), mentorForm);
+            for (Mentee mentee : match.mentees()) {
+                var memberMentee = memberRepository.findById(mentee.getNumber()).orElse(null);
+                if (memberMentee == null) {
+                    throw new RuntimeException("멘티를 찾을 수 없습니다: " + mentee.getNumber());
+                }
+                matchInternal(memberMentor, memberMentee);
+            }
         }
+    }
+
+    public void match(String mentorId, String menteeId) {
+        var mentor = memberRepository.findById(mentorId).orElse(null);
+        var mentee = memberRepository.findById(menteeId).orElse(null);
+
+        if (mentor == null) {
+            throw new RuntimeException("멘토를 찾을 수 없습니다: " + mentorId);
+        }
+        if (mentee == null) {
+            throw new RuntimeException("멘티를 찾을 수 없습니다: " + menteeId);
+        }
+
+        matchInternal(mentor, mentee);
+    }
+
+    public void unmatch(String mentorId, String menteeId) {
+        var mentor = memberRepository.findById(mentorId).orElse(null);
+        var mentee = memberRepository.findById(menteeId).orElse(null);
+
+        if (mentor == null) {
+            throw new RuntimeException("멘토를 찾을 수 없습니다: " + mentorId);
+        }
+        if (mentee == null) {
+            throw new RuntimeException("멘티를 찾을 수 없습니다: " + menteeId);
+        }
+
+        unmatchInternal(mentor, mentee);
+    }
+
+    public void clear() {
+        List<Member> members = memberService.getAllMembers();
+        for (Member member : members) {
+            member.setMentor(null);
+            member.getMentees().clear();
+        }
+        memberRepository.saveAll(members);
+    }
+
+
+    private void matchInternal(Member mentor, Member mentee) {
+        System.out.println("Matched: " + mentor.getName() + " - " + mentee.getName());
+        mentor.getMentees().add(mentee);
+        mentee.setMentor(mentor);
+
+        memberRepository.save(mentor);
+    }
+
+    private void unmatchInternal(Member mentor, Member mentee) {
+        System.out.println("Unmatched: " + mentor.getName() + " - " + mentee.getName());
+        mentor.getMentees().remove(mentee);
+        mentee.setMentor(null);
+
+        memberRepository.save(mentor);
     }
 }

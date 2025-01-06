@@ -11,5 +11,6 @@ public class MemberUpdateForm {
     private String phone;
     private String email;
     private String major;
+    private String interest;
     private Boolean isMentor;
 }

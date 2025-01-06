@@ -1,7 +1,7 @@
 package com.duzz.backend.controller;
 
 import com.duzz.backend.service.ScheduleService;
-import com.duzz.backend.util.SecurityUtil;
+import com.duzz.backend.component.SecurityProvider;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class ScheduleController {
     private final ScheduleService scheduleService;
+    private final SecurityProvider securityProvider;
 
     @PostMapping("/add/{subjectId}")
     @Operation(summary = "(JWT 토큰 필요) 학생의 시간표에 과목을 추가합니다.")
     public ResponseEntity<?> addSubject(@PathVariable String subjectId) {
         try {
-            var memberId = SecurityUtil.getCurrentUserId();
+            var memberId = securityProvider.getCurrentUserId();
             scheduleService.addSubjectFor(memberId, subjectId);
             return ResponseEntity.ok("과목 추가 성공");
         } catch (Exception e) {
@@ -34,7 +35,7 @@ public class ScheduleController {
     @Operation(summary = "(JWT 토큰 필요) 학생의 시간표에서 과목을 제거합니다.")
     public ResponseEntity<?> deleteSubject(@PathVariable String subjectId) {
         try {
-            var memberId = SecurityUtil.getCurrentUserId();
+            var memberId = securityProvider.getCurrentUserId();
             scheduleService.deleteSubjectFor(memberId, subjectId);
             return ResponseEntity.ok("과목 제거 성공");
         } catch (Exception e) {

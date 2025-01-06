@@ -24,23 +24,29 @@ public class Member extends BaseTimeEntity implements UserDetails {
     private String email;
     @Column(length = 200, nullable = false)
     private String password;
-    // 추후 추가할 필드
-    // 수강 과목, 학년, 관심분야
     @Column(length = 200) // 연락처
     private String phone;
     @Column(length = 200)
-
+    private String interest; // 관심분야
     private Boolean isMentor;
-
     @ManyToOne
     private Major major;
-
     @Getter
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @Builder.Default
     private Set<MemberSubject> subjects = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "mentor_id")
+    private Member mentor;
+
+    @OneToMany(mappedBy = "mentor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @Builder.Default
+    private Set<Member> mentees = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() { return Collections.emptyList(); }
