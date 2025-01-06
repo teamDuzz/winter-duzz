@@ -1,0 +1,18 @@
+services:
+  duzz-be:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8201:8201"
+    networks:
+      - dmoj_nginx_network
+    environment:
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_URL=anacnu.kr
+      - PORT=8201
+      - FLASK_SERVER_URL=${FLASK_SERVER_URL}
+  
+networks:
+  dmoj_nginx_network:
+    external: true
