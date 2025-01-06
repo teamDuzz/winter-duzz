@@ -14,9 +14,9 @@ import java.util.ArrayList;
 @SpringBootTest
 class BackendApplicationTests {
 
-	@Test
-	void addSubjects() {
-
-	}
+//	@Test
+//	void addSubjects() {
+//
+//	}
 
 }
