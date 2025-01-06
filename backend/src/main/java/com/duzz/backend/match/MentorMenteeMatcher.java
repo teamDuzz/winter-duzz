@@ -21,7 +21,7 @@ public class MentorMenteeMatcher {
 
     // 멘토-멘티 매칭
     public List<Match> matchProfiles(List<Mentor> mentors, List<Mentee> mentees) {
-//        String url = "http://211.109.126.86:5000/api/receive"; // Flask 서버 URL
+        String url = "http://211.109.126.86:5000/api/receive"; // Flask 서버 URL
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
@@ -52,31 +52,29 @@ public class MentorMenteeMatcher {
 
                 if ("success".equals(responseJson.get("status").asText())) {
                     // 매칭 결과 파싱
+                    System.out.println("1");
                     List<Match> matchResults = new ArrayList<>();
                     JsonNode resultNode = responseJson.get("result");
-
                     for (JsonNode matchNode : resultNode) {
                         // Mentor 정보 파싱
                         JsonNode mentorNode = matchNode.get("mentor");
                         String mentorName = mentorNode.get("name").asText();
-                        String id = mentorNode.get("id").asText();
+                        String id = mentorNode.get("number").asText();
                         String major = mentorNode.get("major").asText();
                         JsonNode mentorSubjectsNode = mentorNode.get("subjects");
                         List<String> mentorSubjects = new ArrayList<>();
                         for (JsonNode subject : mentorSubjectsNode) {
                             mentorSubjects.add(subject.asText());
                         }
-
                         // 멘토 객체 생성
                         Mentor mentor = new Mentor(mentorName, id, major, mentorSubjects);
 
                         JsonNode menteeNodes = matchNode.get("mentees");
-
                         // 멘티 리스트 생성
                         List<Mentee> menteeList = new ArrayList<>();
                         for (JsonNode menteeNode : menteeNodes) {
                             String menteeName = menteeNode.get("name").asText();
-                            String menteeId = menteeNode.get("id").asText();
+                            String menteeId = menteeNode.get("number").asText();
                             JsonNode menteeInterestsNode = menteeNode.get("interests");
                             List<String> menteeInterests = new ArrayList<>();
                             for (JsonNode interest : menteeInterestsNode) {
