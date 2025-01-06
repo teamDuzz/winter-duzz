@@ -28,7 +28,12 @@ public class Member extends BaseTimeEntity implements UserDetails {
     private String phone;
     @Column(length = 200)
     private String interest; // 관심분야
+    @Column(nullable = false)
+    @ColumnDefault("false")
     private Boolean isMentor;
+    @Column(nullable = false)
+    @ColumnDefault("false")
+    private Boolean matchingOption; // 시간표 매칭 or 관심분야 매칭
     @ManyToOne
     private Major major;
     @Getter

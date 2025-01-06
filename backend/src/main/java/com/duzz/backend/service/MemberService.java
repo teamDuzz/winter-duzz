@@ -102,6 +102,9 @@ public class MemberService {
         if (form.getIsMentor() != null) {
             member.setIsMentor(form.getIsMentor());
         }
+        if (form.getMatchingOption() != null) {
+            member.setMatchingOption(form.getMatchingOption());
+        }
 
         memberRepository.save(member);
     }

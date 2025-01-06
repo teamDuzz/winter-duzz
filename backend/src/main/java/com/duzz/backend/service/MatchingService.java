@@ -42,7 +42,7 @@ public class MatchingService {
             } else {
                 // Mentee 생성하고 리스트에 추가
                 List<String> interests = member.getInterest() == null ? Collections.emptyList() : List.of(member.getInterest().split("\\|"));
-                Mentee mentee = new Mentee(member.getName(), member.getId(), interests, subjects, false);
+                Mentee mentee = new Mentee(member.getName(), member.getId(), interests, subjects, member.getMatchingOption());
                 mentee.setSchedule(timetable);
                 mentees.add(mentee);
             }

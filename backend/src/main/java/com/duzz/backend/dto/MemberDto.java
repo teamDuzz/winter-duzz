@@ -16,6 +16,7 @@ public class MemberDto {
     private String major;
     private String interest;
     private Boolean isMentor;
+    private Boolean matchingOption;
     private List<String> subjects;
     private String mentorId;
     private List<String> menteeIds;
@@ -29,6 +30,7 @@ public class MemberDto {
                 .major(member.getMajor() == null ? null : member.getMajor().getName())
                 .interest(member.getInterest())
                 .isMentor(member.getIsMentor())
+                .matchingOption(member.getMatchingOption())
                 .subjects(member.getSubjects().stream()
                         .map(memberSubject -> memberSubject.getSubject().getName())
                         .toList())

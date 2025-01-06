@@ -13,4 +13,5 @@ public class MemberUpdateForm {
     private String major;
     private String interest;
     private Boolean isMentor;
+    private Boolean matchingOption;
 }
