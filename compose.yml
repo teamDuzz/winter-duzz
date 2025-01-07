@@ -13,19 +13,6 @@ services:
       - DB_URL=anacnu.kr
       - PORT=${PORT}
       - FLASK_SERVER_URL=${FLASK_SERVER_URL}
-
-  duzz-fe:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "${PORT}:${PORT}"  # 프론트엔드 포트
-    networks:
-      - default
-    environment:
-      - PORT=${PORT}  # 프론트엔드 환경 변수
-      - FRONTEND_BASE_URL=http://anacnu.kr:${PORT}/frontend
-      - FLASK_SERVER_URL=${FLASK_SERVER_URL}
 networks:
   dmoj_nginx_network:
     external: true
