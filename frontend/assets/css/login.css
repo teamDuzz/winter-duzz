@@ -1,4 +1,3 @@
-/* Reset basic styles */
 body, h1, h6, p, form, label, input, button, footer, main, section, header {
   margin: 0;
   padding: 0;
@@ -6,15 +5,15 @@ body, h1, h6, p, form, label, input, button, footer, main, section, header {
 }
 
 body {
-  font-family: 'Noto Sans KR', Arial, sans-serif; /* Font family 통일 */
-  background-color: #EDF5FC; /* Background color */
+  font-family: 'Noto Sans KR', Arial, sans-serif;
+  background-color: #EDF5FC;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 header {
-  background-color: #36639D; /* Header bar color */
+  background-color: #36639D;
   color: white;
   width: 100%;
   text-align: center;
@@ -22,18 +21,18 @@ header {
 }
 
 main {
-  flex: 1; /* Allows main to fill available space */
+  flex: 1; 
   display: flex;
-  flex-direction: column; /* Ensures vertical layout */
-  align-items: center; /* Center content horizontally */
-  justify-content: center; /* Center content vertically */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: 20px; /* Adds padding to main content */
-  box-sizing: border-box; /* Includes padding in width/height calculations */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .login-section .login-container {
-  background: gray; /* Gray background */
+  background: gray;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -99,52 +98,41 @@ main {
   font-size: 0.9rem;
 }
 
-/* Footer */
-footer {
-  background-color: #454749; /* Footer color */
-  color: #ffffff;
-  text-align: center;
-  padding: 15px 0;
-  width: 100%;
-  margin-top: auto; /* Ensures footer is pushed to the bottom */
-}
-
-/* 반응형 디자인 */
 @media (max-width: 768px) {
   body {
-    padding: 0 10px; /* 작은 화면에서 양쪽 여백 추가 */
+    padding: 0 10px;
   }
 
   .login-section .login-container {
     padding: 1.5rem;
-    max-width: 90%; /* 화면 크기에 맞게 너비 제한 */
+    max-width: 90%;
   }
 
   .login-section h1 {
-    font-size: 1.5rem; /* 제목 크기 축소 */
+    font-size: 1.5rem;
   }
 
   .login-section label {
-    font-size: 0.9rem; /* 라벨 텍스트 크기 조정 */
+    font-size: 0.9rem;
   }
 
   .login-section input {
-    padding: 0.4rem; /* 입력 필드 높이 조정 */
+    padding: 0.4rem;
   }
 
   .login-section button {
     padding: 0.6rem;
-    font-size: 0.9rem; /* 버튼 텍스트 크기 축소 */
+    font-size: 0.9rem;
   }
 
   footer p {
-    font-size: 12px; /* 작은 화면에서 텍스트 크기 축소 */
+    font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .login-section h1 {
-    font-size: 1.2rem; /* 제목 크기 더 축소 */
+    font-size: 1.2rem;
   }
 
   .login-section button {
@@ -153,7 +141,7 @@ footer {
   }
 
   .password-explain h6 {
-    font-size: 0.9rem; /* 설명 텍스트 크기 조정 */
+    font-size: 0.9rem;
   }
 
   .password-explain p {

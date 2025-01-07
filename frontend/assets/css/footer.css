@@ -1,4 +1,3 @@
-/* Footer 전체 스타일 */
 footer {
   background-color: #454749;
   color: #FFFFFF;
@@ -17,7 +16,6 @@ footer {
   gap: 20px;
 }
 
-/* 왼쪽 영역 */
 #footer-left {
   flex: 1;
   display: flex;
@@ -46,7 +44,6 @@ footer {
   font-size: 0.9rem;
 }
 
-/* 오른쪽 영역 */
 #footer-right {
   flex: 2;
   display: flex;
@@ -71,10 +68,9 @@ footer {
 }
 
 .location_link:hover {
-  text-decoration: underline; /* 하이라이트 강조 */
+  text-decoration: underline;
 }
 
-/* 아이콘 섹션 */
 .icons {
   display: flex;
   gap: 15px;
@@ -90,7 +86,7 @@ footer {
 }
 
 .icons a:hover {
-  color: #54afff; /* 호버 시 강조 */
+  color: #54afff;
 }
 
 .icons a img {
@@ -98,17 +94,15 @@ footer {
   height: 24px;
 }
 
-/* 저작권 영역 */
 #footer-copyright {
   text-align: center;
   font-size: 12px;
   color: #CCCCCC;
   margin-top: 15px;
   padding-top: 10px;
-  border-top: 1px solid #666666; /* 상단 경계선 */
+  border-top: 1px solid #666666;
 }
 
-/* 반응형 디자인 */
 @media (max-width: 768px) {
   #footer-container {
     flex-direction: column;
@@ -134,11 +128,11 @@ footer {
   }
 
   .icons a img {
-    width: 20px; /* 작은 화면에서 아이콘 크기 축소 */
+    width: 20px;
     height: 20px;
   }
 
   .icons a {
-    font-size: 14px; /* 아이콘 텍스트 크기 축소 */
+    font-size: 14px;
   }
 }

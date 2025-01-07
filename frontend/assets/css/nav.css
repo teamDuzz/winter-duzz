@@ -1,4 +1,3 @@
-/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -7,13 +6,12 @@
 
 html, body {
   font-family: 'Arial', sans-serif;
-  background-color: #EDF5FC; /* 페이지 배경 색상 */
-  color: #454749; /* 기본 텍스트 색상 */
+  background-color: #EDF5FC;
+  color: #454749;
 }
 
-/* 고정 헤더 */
 #main-header {
-  background-color: #295388; /* 헤더 배경색 */
+  background-color: #295388;
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -21,18 +19,17 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10; /* 콘텐츠 위에 고정 */
-  height: 60px; /* 헤더 높이 */
+  z-index: 10;
+  height: 60px;
 }
 
-/* 로고 및 제목 컨테이너 */
 #header-container {
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  justify-content: space-between; /* 로고와 로그아웃 버튼 간격 */
+  justify-content: space-between;
 }
 
 #header-logo {
@@ -41,21 +38,21 @@ html, body {
 }
 
 #header-img {
-  height: 40px; /* 로고 이미지 크기 */
+  height: 40px;
   margin-right: 10px;
-  color: #FFFFFF;/* 로고와 제목 사이 간격 */
+  color: #FFFFFF;
 }
 
 #header-title {
-  color: #FFFFFF; /* 헤더 텍스트 색상 */
+  color: #FFFFFF;
   font-size: 20px;
   font-weight: bold;
 }
 
 button {
-  background-color: transparent; /* 배경색 제거 */
-  color: #454749; /* 텍스트 색상 */
-  border: none; /* 테두리 제거 */
+  background-color: transparent;
+  color: #454749;
+  border: none;
   cursor: pointer;
 }
 
@@ -66,31 +63,30 @@ button {
   padding: 10px 15px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s ease; /* 색상 변화 애니메이션 */
+  transition: background-color 0.3s ease;
 }
 
 #logout-button:hover {
-  color : #888888; /* 호버 시 회색 */
+  color : #888888;
 }
 
-/* 네비게이션 바 */
 #main-nav {
-  background-color: #36639D; /* 네비게이션 배경색 */
-  position: sticky; /* 헤더 아래에 고정 */
-  top: 60px; /* 헤더 높이만큼 아래에 위치 */
-  z-index: 9; /* 헤더보다 낮은 z-index */
+  background-color: #36639D;
+  position: sticky;
+  top: 60px;
+  z-index: 9;
 }
 
 #nav-list {
   display: flex;
-  justify-content: space-around; /* 가로로 균등 간격 */
+  justify-content: space-around;
   list-style: none;
   padding: 10px 0;
   margin: 0;
 }
 
 #nav-list li {
-  flex: 1; /* 각 항목이 동일한 너비로 배치 */
+  flex: 1;
   text-align: center;
 }
 
@@ -104,38 +100,38 @@ button {
 }
 
 #nav-list li a:hover {
-  color: #ffeb3b; /* 텍스트 호버 색상 */
+  color: #ffeb3b;
 }
 
-/* 메인 콘텐츠 간격 */
+
 .dashboard {
-  margin-top: 120px; /* 헤더(60px) + 네비게이션(60px) 높이 */
+  margin-top: 120px;
   padding: 20px;
 }
 
-/* 반응형 디자인 (모바일용) */
+
 @media (max-width: 768px) {
   #header-container {
-    justify-content: center; /* 모바일 화면에서는 로고 중앙 정렬 */
+    justify-content: center;
   }
 
   #header-logo {
-    flex-direction: column; /* 모바일에서는 로고와 제목 세로 정렬 */
-    align-items: center; /* 중앙 정렬 */
+    flex-direction: column;
+    align-items: center;
   }
 
   #header-img {
-    margin-right: 0; /* 세로 정렬에서는 간격 제거 */
-    margin-bottom: 5px; /* 제목과 로고 간격 추가 */
+    margin-right: 0;
+    margin-bottom: 5px;
   }
 
   #header-title {
-    font-size: 18px; /* 제목 크기 감소 */
-    text-align: center; /* 텍스트 중앙 정렬 */
+    font-size: 18px;
+    text-align: center;
   }
 
   #nav-list {
-    flex-direction: column; /* 모바일에서 세로 정렬 */
+    flex-direction: column;
   }
 
   #nav-list li {
@@ -143,6 +139,6 @@ button {
   }
 
   .dashboard {
-    margin-top: 140px; /* 모바일에서 헤더와 네비게이션 간격 */
+    margin-top: 140px;
   }
 }

@@ -1,14 +1,13 @@
 document.getElementById('login-form').addEventListener('submit', async function (event) {
-    event.preventDefault(); // 폼 기본 동작 막기
+    event.preventDefault();
 
     const studentId = document.getElementById('student-id').value.trim();
     const password = document.getElementById('student-password').value.trim();
-    const API_BASE_URL = 'http://59.29.157.89:8080';
+    const API_BASE_URL = 'http://anacnu.kr:9027';
     const loginUrl = `${API_BASE_URL}/member/signin`;
     const userInfoUrl = `${API_BASE_URL}/member/me`;
 
     try {
-        // 로그인 요청
         const loginResponse = await fetch(loginUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -23,18 +22,15 @@ document.getElementById('login-form').addEventListener('submit', async function 
         const loginData = await loginResponse.json();
         console.log('Login Response:', loginData);
 
-        // JWT 토큰 확인
         const accessToken = loginData.accessToken;
         if (!accessToken || accessToken === '') {
             alert('로그인 실패: 잘못된 학번 또는 비밀번호입니다.');
             return;
         }
 
-        // JWT 토큰 저장
         localStorage.setItem('accessToken', accessToken);
         console.log('Access token saved to local storage:', accessToken);
 
-        // 관리자 계정 확인
         if (studentId === '999999999') {
             alert('관리자로 로그인되었습니다.');
 
@@ -75,11 +71,9 @@ document.getElementById('login-form').addEventListener('submit', async function 
         const userInfo = await userResponse.json();
         console.log('User Info:', userInfo);
 
-        // 사용자 정보를 로컬 스토리지에 저장
         localStorage.setItem('userInfo', JSON.stringify(userInfo));
         console.log('User info saved to local storage:', userInfo);
 
-        // 사용자 이름 기반 알림 메시지
         const userName = userInfo.name || '사용자';
         if (userInfo.isMentor) {
             alert(`${userName}님, 멘토로 로그인되었습니다.`);
@@ -90,6 +84,6 @@ document.getElementById('login-form').addEventListener('submit', async function 
         }
     } catch (error) {
         console.error('Error during login or fetching user info:', error);
-        alert('서버 오류가 발생했습니다. 나중에 다시 시도하세요.');
+        alert('오류가 발생했습니다. 나중에 다시 시도하세요.');
     }
 });

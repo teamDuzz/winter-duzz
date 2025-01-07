@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async function () {
-  const API_BASE_URL = 'http://anacnu.kr:9027/';s
+  const API_BASE_URL = 'http://anacnu.kr:9027';
   const accessToken = localStorage.getItem('accessToken');
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
@@ -39,6 +39,10 @@ document.addEventListener('DOMContentLoaded', async function () {
       document.getElementById('user-id').value = userInfo.id;
       document.getElementById('user-email').value = userInfo.email || '';
       document.getElementById('user-phone').value = userInfo.phone || '';
+      document.getElementById('user-interest').value = userInfo.interest || '';
+
+      const matchingOptionSelect = document.getElementById('user-matching-option');
+      matchingOptionSelect.value = userInfo.matchingOption ? 'true' : 'false';
   }
 
   await populateMajorDropdown();
@@ -50,6 +54,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       const password = document.getElementById('user-password').value.trim();
       const phone = document.getElementById('user-phone').value.trim();
       const major = document.getElementById('user-major').value;
+      const interest = document.getElementById('user-interest').value.trim();
+      const matchingOption = document.getElementById('user-matching-option').value === 'true';
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -71,7 +77,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
 
       if (!major) {
-          alert('학과를 선택해주세요.');
+          alert('소속을 선택해주세요.');
           return;
       }
 
@@ -88,6 +94,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                   password: password,
                   phone: phone,
                   major: major,
+                  interest: interest,
+                  matchingOption: matchingOption,
                   isMentor: userInfo.isMentor,
               }),
           });
@@ -115,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           console.log('Updated user info saved to local storage:', updatedUserInfo);
 
           alert('정보가 성공적으로 업데이트되었습니다.');
-          window.location.reload(); // 페이지 새로고침
+          window.location.reload();
       } catch (error) {
           console.error('Error updating user info:', error);
           alert('서버 오류가 발생했습니다. 다시 시도해주세요.');

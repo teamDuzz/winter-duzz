@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const API_BASE_URL = 'http://59.29.157.89:8080'; //벡엔드 서버 주소 변경 가능
+  const API_BASE_URL = 'http://anacnu.kr:9027';
 
   document.getElementById('change-state-form').addEventListener('submit', async function (event) {
       event.preventDefault();

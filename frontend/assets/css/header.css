@@ -1,4 +1,3 @@
-/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -7,13 +6,12 @@
 
 html, body {
   font-family: 'Arial', sans-serif;
-  background-color: #EDF5FC; /* 페이지 배경 색상 */
-  color: #454749; /* 기본 텍스트 색상 */
+  background-color: #EDF5FC;
+  color: #454749;
 }
 
-/* 고정 헤더 */
 #main-header {
-  background-color: #36639D; /* 헤더 배경색 */
+  background-color: #36639D;
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -21,18 +19,17 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10; /* 콘텐츠 위에 고정 */
-  height: 60px; /* 고정된 헤더 높이 */
+  z-index: 10;
+  height: 60px;
 }
 
-/* 로고 및 제목 컨테이너 */
 #header-container {
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  justify-content: space-between; /* 로고와 로그아웃 버튼 간격 */
+  justify-content: space-between;
 }
 
 #header-logo {
@@ -41,17 +38,16 @@ html, body {
 }
 
 #header-img {
-  height: 40px; /* 로고 이미지 크기 */
-  margin-right: 10px; /* 로고와 제목 사이 간격 */
+  height: 40px;
+  margin-right: 10px;
 }
 
 #header-title {
-  color: #FFFFFF; /* 헤더 텍스트 색상 */
+  color: #FFFFFF;
   font-size: 20px;
   font-weight: bold;
 }
 
-/* 로그아웃 버튼 */
 #logout-button {
   color: white;
   border: none;
@@ -59,35 +55,34 @@ html, body {
   padding: 10px 15px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s ease; /* 색상 변화 애니메이션 */
+  transition: background-color 0.3s ease;
 }
 
 #logout-button:hover {
-  color : #888888; /* 호버 시 회색 */
+  color : #888888;
 }
 
-/* 반응형 디자인 (모바일용) */
 @media (max-width: 768px) {
   #main-header {
     padding: 15px;
   }
 
   #header-logo {
-    flex-direction: column; /* 로고와 제목을 세로로 정렬 */
-    align-items: flex-start; /* 왼쪽 정렬 유지 */
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   #header-img {
-    margin-right: 0; /* 세로 정렬에서는 간격 제거 */
+    margin-right: 0;
     margin-bottom: 5px;
   }
 
   #header-title {
-    font-size: 18px; /* 제목 크기 감소 */
+    font-size: 18px;
   }
 
   #logout-button {
-    font-size: 13px; /* 모바일에서 버튼 텍스트 크기 감소 */
-    padding: 8px 12px; /* 버튼 크기 조정 */
+    font-size: 13px;
+    padding: 8px 12px;
   }
 }

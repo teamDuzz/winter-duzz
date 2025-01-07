@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async function () {
-  const API_BASE_URL = 'http://59.29.157.89:8080';
+  const API_BASE_URL = 'http://anacnu.kr:9027';
   const accessToken = localStorage.getItem('accessToken') || '';
   const totalCreditsElement = document.getElementById('total-credits');
   const subjectsListElement = document.getElementById('subjects-list');
@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   const searchInput = document.getElementById('subject-search');
   let selectedSubject = null;
 
-  /**
-   * 개별 과목 정보 가져오기
-   */
   async function fetchSubjectDetails(subjectId) {
       try {
           const response = await fetch(`${API_BASE_URL}/subject/list?keyword=${encodeURIComponent(subjectId)}&page=0`);
@@ -21,16 +18,13 @@ document.addEventListener('DOMContentLoaded', async function () {
               throw new Error(`Failed to fetch details for subject ID: ${subjectId}`);
           }
           const data = await response.json();
-          return data.content[0] || null; // 첫 번째 결과 반환
+          return data.content[0] || null;
       } catch (error) {
           console.error('Error fetching subject details:', error);
           return null;
       }
   }
 
-  /**
-   * /me 호출로 유저 정보 갱신
-   */
   async function updateUserInfo() {
       try {
           const response = await fetch(`${API_BASE_URL}/member/me`, {
@@ -48,15 +42,12 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
   }
 
-  /**
-   * 과목 렌더링
-   */
   async function renderSubjects() {
       subjectsListElement.innerHTML = '';
       let totalCredits = 0;
-      const subjects = await updateUserInfo(); // 업데이트된 subjects 가져오기
+      const subjects = await updateUserInfo();
 
-      console.log('Rendering subjects:', subjects); // 디버깅 로그
+      console.log('Rendering subjects:', subjects);
 
       for (const subjectId of subjects) {
           const subject = await fetchSubjectDetails(subjectId);
@@ -82,16 +73,13 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
 
       totalCreditsElement.textContent = `총 학점: ${totalCredits}`;
-      console.log(`Subjects rendered. Total credits: ${totalCredits}`); // 디버깅 로그
+      console.log(`Subjects rendered. Total credits: ${totalCredits}`);
   }
 
-  /**
-   * 과목 삭제
-   */
   async function deleteSubject(subjectId) {
       try {
           const deleteUrl = `${API_BASE_URL}/schedule/delete/${subjectId}`;
-          console.log(`Deleting subject with ID: ${subjectId}`); // 디버깅 로그
+          console.log(`Deleting subject with ID: ${subjectId}`);
 
           const response = await fetch(deleteUrl, {
               method: 'POST',
@@ -99,29 +87,26 @@ document.addEventListener('DOMContentLoaded', async function () {
           });
 
           if (!response.ok) {
-              console.error('Delete subject failed:', response); // 디버깅 로그
+              console.error('Delete subject failed:', response);
               throw new Error('Failed to delete subject.');
           }
 
-          console.log(`Subject ${subjectId} deleted successfully.`); // 디버깅 로그
+          console.log(`Subject ${subjectId} deleted successfully.`);
 
           alert('수강과목을 성공적으로 삭제했습니다.');
 
           // 렌더링 갱신
           renderSubjects();
       } catch (error) {
-          console.error('Error deleting subject:', error); // 디버깅 로그
+          console.error('Error deleting subject:', error);
           alert('과목 삭제에 실패했습니다.');
       }
   }
 
-  /**
-   * 검색 기능
-   */
   searchButton.addEventListener('click', async () => {
       const keyword = searchInput.value.trim();
       if (!keyword) {
-          console.warn('No search keyword entered.'); // 디버깅 로그
+          console.warn('No search keyword entered.');
           alert('검색어를 입력하세요.');
           return;
       }
@@ -131,17 +116,17 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       try {
           const searchUrl = `${API_BASE_URL}/subject/list?keyword=${encodeURIComponent(keyword)}&page=0`;
-          console.log(`Search initiated with URL: ${searchUrl}`); // 디버깅: 검색 API URL 확인
+          console.log(`Search initiated with URL: ${searchUrl}`);
 
           const response = await fetch(searchUrl);
-          console.log(`Search response status: ${response.status}`); // 디버깅: 응답 상태 확인
+          console.log(`Search response status: ${response.status}`);
 
           if (!response.ok) {
               throw new Error('Failed to fetch search results.');
           }
 
           const data = await response.json();
-          console.log('Search results data:', data); // 디버깅: 응답 데이터 출력
+          console.log('Search results data:', data);
 
           if (!data.content || data.content.length === 0) {
               modalResults.innerHTML = '<p>검색 결과가 없습니다.</p>';
@@ -166,20 +151,17 @@ document.addEventListener('DOMContentLoaded', async function () {
                   item.classList.add('selected');
                   selectedSubject = subject.id;
                   addButton.disabled = false;
-                  console.log(`Selected subject: ${selectedSubject}`); // 디버깅: 선택된 과목 ID
+                  console.log(`Selected subject: ${selectedSubject}`);
               });
 
               modalResults.appendChild(item);
           });
       } catch (error) {
-          console.error('Error during search:', error); // 디버깅: 에러 상세 출력
+          console.error('Error during search:', error);
           modalResults.innerHTML = '<p>검색 실패. 다시 시도해주세요.</p>';
       }
   });
 
-  /**
-   * 과목 추가
-   */
   addButton.addEventListener('click', async () => {
       if (!selectedSubject) {
           alert('과목을 선택해주세요.');
@@ -189,7 +171,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       try {
           const addUrl = `${API_BASE_URL}/schedule/add/${selectedSubject}`;
           console.log(`Attempting to add subject with URL: ${addUrl}`);
-          console.log('Access Token:', accessToken); // 디버깅용 Access Token 출력
+          console.log('Access Token:', accessToken);
 
           const response = await fetch(addUrl, {
               method: 'POST',
@@ -208,7 +190,6 @@ document.addEventListener('DOMContentLoaded', async function () {
           selectedSubject = null;
           addButton.disabled = true;
 
-          // 렌더링 갱신
           renderSubjects();
       } catch (error) {
           console.error('Error adding subject:', error);
@@ -216,26 +197,19 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
   });
 
-  /**
-   * 모달 닫기
-   */
   closeModalButton.addEventListener('click', () => {
       modal.classList.add('hidden');
       selectedSubject = null;
       addButton.disabled = true;
   });
 
-  /**
-   * 삭제 버튼 이벤트
-   */
   subjectsListElement.addEventListener('click', (event) => {
       if (event.target.classList.contains('delete-button')) {
           const subjectId = event.target.dataset.id;
-          console.log(`Delete button clicked for subject ID: ${subjectId}`); // 디버깅 로그
+          console.log(`Delete button clicked for subject ID: ${subjectId}`);
           deleteSubject(subjectId);
       }
   });
 
-  // 초기 렌더링
   renderSubjects();
 });

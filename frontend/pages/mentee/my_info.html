@@ -9,11 +9,8 @@
     <link rel="stylesheet" href="/assets/css/nav.css">
     <link rel="stylesheet" href="/assets/css/my_info.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
 </head>
 <body>
-    <!-- Header -->
-    <!-- Nav -->
     <main id="my-info-dashboard">
         <div class="info-card">
             <h2>내 정보</h2>
@@ -33,16 +30,24 @@
                 <small class="help-text">-없이 11개의 숫자만 입력해주세요</small>
 
                 <label for="user-major">전공</label>
-                <input type="text" id="user-major" name="user-major" placeholder="전공을 입력하세요" required>
+                <select id="user-major" name="user-major" required></select>
+
+                <label for="user-interest">관심분야</label>
+                <input type="text" id="user-interest" name="user-interest" placeholder="관심분야를 입력하세요" required>
+
+                <label for="user-matching-option">멘토 매칭 옵션</label>
+                <select id="user-matching-option" name="user-matching-option" required>
+                    <option value="false">시간표 우선 매칭</option>
+                    <option value="true">관심분야 우선 매칭</option>
+                </select>
 
                 <button type="submit">정보 수정</button>
             </form>
         </div>
     </main>
-    <!-- Footer -->
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/nav.js"></script>
     <script src="/assets/js/footer.js"></script>
-    <script src="/assets/js/my_info.js"></script>
+    <script src="/assets/js/mentee_info.js"></script>
 </body>
 </html>

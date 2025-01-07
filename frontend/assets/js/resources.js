@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
-  const API_BASE_URL = 'http://59.29.157.89:8080';
+  const API_BASE_URL = 'http://anacnu.kr:9027';
   const resourcesUrl = `${API_BASE_URL}/resources`;
 
-  /**
-   * 자료 데이터 가져오기
-   */
   async function fetchResources() {
       try {
           const response = await fetch(resourcesUrl);
@@ -19,9 +16,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
   }
 
-  /**
-   * 자료 리스트 렌더링
-   */
   async function renderResources() {
       const resourcesList = document.getElementById('resources-list');
       const resources = await fetchResources();
@@ -45,6 +39,5 @@ document.addEventListener('DOMContentLoaded', async function () {
       });
   }
 
-  // 자료 리스트 렌더링 실행
   renderResources();
 });
