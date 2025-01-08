@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async function () {
-  const API_BASE_URL = 'http://anacnu.kr:9027/';s
+  const API_BASE_URL = 'http://anacnu.kr:9027';
   const accessToken = localStorage.getItem('accessToken');
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 

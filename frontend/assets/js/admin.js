@@ -97,4 +97,27 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('서버 오류가 발생했습니다. 다시 시도해주세요.');
         }
     });
+
+    document.getElementById('start-matching-button').addEventListener('click', async function () {
+        const url = `${API_BASE_URL}/match/match`;
+        console.log(`POST Request URL: ${url}`);
+  
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+            });
+  
+            const data = await response.text();
+            console.log('매칭 시작 응답:', data);
+  
+            if (response.ok) {
+                alert('매칭이 성공적으로 시작되었습니다.');
+            } else {
+                alert('매칭 요청에 실패했습니다.');
+            }
+        } catch (error) {
+            console.error('매칭 시작 중 오류 발생:', error);
+            alert('서버 오류가 발생했습니다. 다시 시도해주세요.');
+        }
+    });
 });
